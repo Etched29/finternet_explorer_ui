@@ -26,7 +26,7 @@ const Program = () => {
         console.log("onExecuteCTAClick", programId)
         setSelectedProgramId(programId);
         localStorage.setItem("selectedProgramId", programId)
-        window.location.href = `/admin/programs/${name}/execute`
+        window.location.href = `/admin/programs/execute`
     }
 
     console.log("selectedProgramId", selectedProgramId)

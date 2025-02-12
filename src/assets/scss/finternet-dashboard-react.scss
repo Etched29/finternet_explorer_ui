@@ -63,8 +63,13 @@
     margin-top: 100px;
 }
 
+.shadow:hover {
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
 .shadow.users {
     width: 600px;
+    position: relative;
 }
 
 .navbar-vertical {
@@ -103,11 +108,14 @@
 
 
 .upload-container {
-    transition: all 1s;
+    transition: all 1s;    
+    max-width: 380px;
+    height: 60vh;
 }
 
 .programs {
     width: 50% !important;
+    max-width: 600px;
 }
 
 .execute-container {
@@ -184,9 +192,10 @@
 
 .navigateToBindCTA {
     position: absolute;
-    width: 75px !important;
+    width: 14% !important;
     right: 1rem;
     top: 0.5rem;
+    padding: 0.4rem 0.4rem
 }
 
 .driverSelectForm {
@@ -205,4 +214,8 @@
 
 .fileUploadLabel {
     border-style: dashed !important;
+}
+
+.dropdown-menu {
+    transform: none !important;
 }

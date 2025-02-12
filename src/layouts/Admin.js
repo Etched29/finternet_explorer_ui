@@ -26,6 +26,7 @@ import BindForm from "views/examples/BindForm";
 import AddUserForm from "views/examples/AddUserForm";
 import Submit from "views/examples/Submit";
 import Execute from "views/examples/Execute.js";
+import Upload from "views/examples/Upload";
 
 const Admin = (props) => {
 
@@ -66,7 +67,8 @@ const Admin = (props) => {
           <Route path="/users/bind" element={<BindForm />} />
           <Route path="/users/add" element={<AddUserForm />} />
           <Route path="/programs/upload" element={<Submit />} />
-          <Route path="/programs/:programId/execute" element={<Execute />} />
+          <Route path="/programs/execute" element={<Execute />} />
+          <Route path="/supported-token-drivers/upload" element={<Upload />} />
           <Route path="*" element={<Navigate to="/admin/home" replace />} />
         </Routes>
       </div>

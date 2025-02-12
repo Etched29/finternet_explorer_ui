@@ -44,6 +44,9 @@ const Submit = () => {
                 <h3 className="mb-0">
                     Add Program
                 </h3>
+                <Button className='backButton' onClick={() => window.history.back()}>
+                    <i class="fa-solid fa-left-long"></i>
+                </Button>
             </CardHeader>
             <CardBody>
                 {loading ? (

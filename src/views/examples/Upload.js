@@ -46,7 +46,8 @@ const Upload = ({ onUploadSuccess }) => {
     try {
       const response = await loadDriver({ driverName, driverVersion, driverBinary });
       setOutput(response);
-      onUploadSuccess()
+      // onUploadSuccess()
+      window.location.href = '/admin/supported-token-drivers'
     } catch (error) {
       setOutput('An error occurred while loading the driver.');
       console.error(error);
@@ -71,9 +72,9 @@ const Upload = ({ onUploadSuccess }) => {
       <CardHeader>
         <h3 className="mb-0">
           Upload
-          {/* <Button className='backButton' onClick={onClose}>
-            <i class="fa-solid fa-xmark"></i>
-          </Button> */}
+          <Button className='backButton' onClick={() => window.history.back()}>
+            <i class="fa-solid fa-left-long"></i>
+          </Button>
         </h3>
       </CardHeader>
       <CardBody>
@@ -156,7 +157,7 @@ const Upload = ({ onUploadSuccess }) => {
               <FileUpload fileName={driverBinary?.name} onUpload={(e) => setDriverBinary(e.target.files?.[0] || null)} fileType={driverType} />
             </FormGroup>
 
-            <Button color="primary" type="submit" block>
+            <Button color="primary" type="submit" block style={{ marginTop: '3rem' }}>
               Setup Token Driver
             </Button>
           </Form>

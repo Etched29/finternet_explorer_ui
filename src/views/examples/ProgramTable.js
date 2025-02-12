@@ -77,12 +77,11 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
                         <tr>
                             <th>Name</th>
                             <th>Version</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {list.map((driver, index) => (
-                            <tr key={index} className={`cursor-pointer ${selectedProgramId === driver.programId ? 'selected-program-row' : ''}`}>
+                            <tr key={index} className={`cursor-pointer ${selectedProgramId === driver.programId ? 'selected-program-row' : ''}`} onClick={onExecuteCTAClick(driver.programId, driver.name)}>
                                 <td>
                                     <Badge color="info" className="badge-lg">
                                         {driver.name}
@@ -92,11 +91,6 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
                                     <Badge color="success" className="badge-lg">
                                         {driver.version}
                                     </Badge>
-                                </td>
-                                <td>
-                                    <Button onClick={onExecuteCTAClick(driver.programId, driver.name)}>
-                                        Execute
-                                    </Button>
                                 </td>
                             </tr>
                         ))}

@@ -32,9 +32,9 @@ const SupportTokens = () => {
   //   }
   // }
 
-  const onUploadSuccess = () => {
-    fetchDriverList()
-  }
+  // const onUploadSuccess = () => {
+  //   fetchDriverList()
+  // }
 
   useEffect(() => {
     fetchDriverList()
@@ -43,7 +43,7 @@ const SupportTokens = () => {
   return (
     <div className='support-tokens-container'>
       <SupportTokenDetails data={tokenList}  />
-      <Upload onUploadSuccess={onUploadSuccess}/>
+      {/* <Upload onUploadSuccess={onUploadSuccess}/> */}
     </div>)
 };
 
