@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.5.1",
-    "@grpc/grpc-js": "^1.12.5",
+    "@grpc/grpc-js": "^1.12.6",
     "@grpc/proto-loader": "^0.7.13",
     "ajv": "^8.16.0",
     "autoprefixer": "^10.4.20",

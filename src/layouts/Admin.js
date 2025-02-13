@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, Route, Routes, Navigate } from "react-router-dom";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Home from "views/examples/Home.js";
@@ -50,7 +50,7 @@ const Admin = (props) => {
       return [mainRoute, ...subRoutes].filter(Boolean);
     });
   };
-
+ 
   console.log("props", props);
 
   return (
@@ -64,7 +64,7 @@ const Admin = (props) => {
         <Routes>
           {getRoutes(routes)}
           <Route path="/home" element={<Home />} />
-          <Route path="/users/bind" element={<BindForm />} />
+          <Route path="/users/bind" element={<BindForm/>} />
           <Route path="/users/add" element={<AddUserForm />} />
           <Route path="/programs/upload" element={<Submit />} />
           <Route path="/programs/execute" element={<Execute />} />

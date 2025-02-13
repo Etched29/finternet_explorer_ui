@@ -163,3 +163,14 @@ message LoginRequest {
 message LoginResponse{
     string message = 1;
 }
+
+service UserCheck {
+  rpc Check(CheckRequest) returns (CheckResponse);
+}
+
+message CheckRequest {
+}
+
+message CheckResponse{
+    bool message = 1;
+}

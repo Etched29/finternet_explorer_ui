@@ -10,9 +10,9 @@ import {
   Alert,
 } from "reactstrap";
 import { login } from '../grpcClient'
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
-const LoginForm = () => {
+const LoginForm = ({setisLoggedIn}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -26,7 +26,15 @@ const LoginForm = () => {
     }
     setError(null);
     const res = await login({username, password})
-    console.log(res)
+    if(res.message=="Error retrieving user"){
+      setError("Invalid username or password");
+    }
+    else{
+      console.log(res.message)
+      localStorage.setItem("jwtToken",JSON.stringify(res.message)) 
+      setisLoggedIn(true)
+    }
+    
   };
 
   const toggleShowPassword = () => {

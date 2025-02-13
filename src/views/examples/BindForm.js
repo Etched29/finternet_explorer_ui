@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import {
     Card,
     CardBody,
@@ -67,6 +67,10 @@ const BindForm = () => {
     useEffect(() => {
         fetchDrivers()
     }, [])
+
+    useEffect(() => {
+        console.log("jwtToken", jwtToken)
+    }, [jwtToken])
 
     return (
         <Card className="shadow">

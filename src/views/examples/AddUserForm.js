@@ -15,18 +15,18 @@ const AddUserForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!username.trim()) return;
+        // if (!username.trim()) return;
 
-        const users = JSON.parse(localStorage.getItem('users') || '[]');
-        const newUser = {
-            id: Date.now().toString(),
-            username: username.trim(),
-            bindings: []
-        };
+        // const users = JSON.parse(localStorage.getItem('users') || '[]');
+        // const newUser = {
+        //     id: Date.now().toString(),
+        //     username: username.trim(),
+        //     bindings: []
+        // };
 
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        window.location.href = '/admin/users';
+        // users.push(newUser);
+        // localStorage.setItem('users', JSON.stringify(users));
+        // window.location.href = '/admin/users';
     };
 
     return (
