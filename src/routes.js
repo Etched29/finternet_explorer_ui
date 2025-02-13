@@ -26,14 +26,14 @@ var routes = [
     path: "/users",
     name: "Users",
     icon: "fa-solid fa-user-gear",
-    component: <Users />,
+    component: Users,
     layout: "/admin"
   },
   {
     path: "/supported-token-drivers",
     name: "Supported token drivers",
     icon: "fa-solid fa-coins",
-    component: <SupportTokens />,
+    component: SupportTokens,
     layout: "/admin"
   },
   {
@@ -41,7 +41,7 @@ var routes = [
     icon: "fa-solid fa-code",
     path: "/programs",
     layout: "/admin",
-    component: <Program />,
+    component: Program,
     // subItems: [
     //   {
     //     name: "Upload",

@@ -10,7 +10,7 @@ import {
   Alert,
 } from "reactstrap";
 import { login } from '../grpcClient'
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginForm = ({onLoginSuccess}) => {
   const [username, setUsername] = useState("");
