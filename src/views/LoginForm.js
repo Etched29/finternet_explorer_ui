@@ -11,8 +11,9 @@ import {
 } from "reactstrap";
 import { login } from '../grpcClient'
 // import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
-const LoginForm = ({setisLoggedIn}) => {
+const LoginForm = ({setIsLoggedIn,setTheUser}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -32,7 +33,9 @@ const LoginForm = ({setisLoggedIn}) => {
     else{
       console.log(res.message)
       localStorage.setItem("jwtToken",JSON.stringify(res.message)) 
-      setisLoggedIn(true)
+      localStorage.setItem("theUser",JSON.stringify(username)) 
+      setTheUser(username);
+      setIsLoggedIn(true);
     }
     
   };

@@ -62,13 +62,14 @@ export const executeCommand = (executeData) => {
   return new Promise(async (resolve, reject) => {
     const executeClient = createExecutionClient()
     const request = new ExecutionRequest()
-    const { input, programId, metadata = {} } = executeData
+    const { input, programId, metadata = {"Authorization":JSON.parse(localStorage.getItem("jwtToken")) } } = executeData
 
     request
       .setInput(input)
       .setProgramId(programId);
 
     const sanitizedMetadata = {};
+    
     Object.keys(metadata).forEach((key) => {
       sanitizedMetadata[key] = encodeURIComponent(metadata[key]); // Encode non-ASCII values
     });

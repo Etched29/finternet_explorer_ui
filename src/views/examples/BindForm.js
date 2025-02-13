@@ -68,9 +68,9 @@ const BindForm = () => {
         fetchDrivers()
     }, [])
 
-    useEffect(() => {
-        console.log("jwtToken", jwtToken)
-    }, [jwtToken])
+    // useEffect(() => {
+    //     console.log("jwtToken", jwtToken)
+    // }, [jwtToken])
 
     return (
         <Card className="shadow">

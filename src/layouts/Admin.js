@@ -32,8 +32,9 @@ const Admin = (props) => {
 
   const getRoutes = (routes) => {
     return routes.flatMap((prop, key) => {
+      const Comp = prop.component
       let mainRoute = prop.layout === "/admin" ? (
-        <Route path={prop.path} element={prop.component} key={key} exact />
+        <Route path={prop.path} element={<Comp {...props} />} key={key} exact />
       ) : null;
 
       let subRoutes = prop.subItems

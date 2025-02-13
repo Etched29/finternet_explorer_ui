@@ -13,7 +13,7 @@ import {
   DropdownItem
 } from 'reactstrap';
 
-const UsersTable = ({ data }) => {
+const UsersTable = ({ data, theUser }) => {
   const [expandedRows, setExpandedRows] = useState({});
   const [users, setUsers] = useState([]);
   const [groupedData, setGroupedData] = useState({});
@@ -35,18 +35,21 @@ const UsersTable = ({ data }) => {
     }
   }, []);
 
+  console.log("theUser", theUser)
+
   useEffect(() => {
     // Group the data by username and match drivers with user suffixes
-    const grouped = {};
+    let username= JSON.parse(localStorage.getItem("theUser")) 
+    const grouped = {[username]: { username: username, bindings: [],id:username}};
 
-    // First, organize localStorage users
-    users.forEach(user => {
-      grouped[user.username] = {
-        username: user.username,
-        bindings: user.bindings || [],
-        id: user.id
-      };
-    });
+    // // First, organize localStorage users
+    // users.forEach(user => {
+    //   grouped[theUser] = {
+    //     username: theUser,
+    //     bindings: user.bindings || [],
+    //     id: user.id
+    //   };
+    // });
 
     // Then, process gRPC data and match by suffix
     data.forEach(item => {
@@ -135,14 +138,14 @@ const UsersTable = ({ data }) => {
       <CardHeader className="border-0" onContextMenu={headerContextClick}>
         <div className="d-flex justify-content-between align-items-center">
           <h3 className="mb-0">Users</h3>
-          <Button
-            className='navigateToBindCTA'
+          {/* <Button
+            className='navigateToBindCTA-2'
             color="primary"
             onClick={() => window.location.href = '/admin/users/add'}
           >
             <i class="fa-solid fa-user-plus"></i>
             &nbsp;&nbsp;Add User
-          </Button>
+          </Button> */}
         </div>
       </CardHeader>
       <CardBody>

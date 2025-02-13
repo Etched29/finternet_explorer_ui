@@ -8,18 +8,55 @@ import { Check} from './grpcClient'
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/finternet-dashboard-react.scss";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 import AdminLayout from "layouts/Admin.js";
 import LoginForm from "views/LoginForm";
 
 
-function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [theUser, setTheUser] = useState(null);   
+// function App() {
+//     const [isLoggedIn, setIsLoggedIn] = useState(false)
+//     const [theUser, setTheUser] = useState(null);   
 
-    const onLoginSuccess = () => {
+//     const onLoginSuccess = () => {
        
-      }
+//       }
+//     useEffect(() => {
+//         if(JSON.parse(localStorage.getItem("jwtToken")) !==null){
+//                 setIsLoggedIn(true)
+//         }
+//         else{
+//             setIsLoggedIn(false)
+//         }
+//     }, [])
+//   return (
+//     <div>
+//     <header style={{ background: "#FFF", height: "50px", "--tw-shadow": "0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1)", boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)" }}>
+//       <NavbarBrand className="pt-0" >
+//         <img
+//           className="navbar-brand-img"
+//           src="https://finternetlab.io/images/headers/finternet-favicon.png"
+//           onClick={() => window.location.href = "/admin/home"}
+//         />
+//       </NavbarBrand>
+      
+//     </header>
+//     {isLoggedIn ? (
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/admin/*" element={<AdminLayout  />} />
+//           <Route path="*" element={<Navigate to="/admin/home" replace />} />
+//         </Routes>
+//       </BrowserRouter>
+//     ) : <LoginForm setisLoggedIn={setIsLoggedIn} onLoginSuccess={onLoginSuccess} setTheUser={setTheUser} />}
+//   </div>
+//   )
+// }
+const App = () => {
+    const [theUser, setTheUser] = useState('')
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
         if(JSON.parse(localStorage.getItem("jwtToken")) !==null){
                 setIsLoggedIn(true)
@@ -28,28 +65,66 @@ function App() {
             setIsLoggedIn(false)
         }
     }, [])
-  return (
-    <div>
-    <header style={{ background: "#FFF", height: "50px", "--tw-shadow": "0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1)", boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)" }}>
-      <NavbarBrand className="pt-0" >
-        <img
-          className="navbar-brand-img"
-          src="https://finternetlab.io/images/headers/finternet-favicon.png"
-          onClick={() => window.location.href = "/admin/home"}
-        />
-      </NavbarBrand>
-      
-    </header>
-    {isLoggedIn ? (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/admin/*" element={<AdminLayout  />} />
-          <Route path="*" element={<Navigate to="/admin/home" replace />} />
-        </Routes>
-      </BrowserRouter>
-    ) : <LoginForm setisLoggedIn={setIsLoggedIn} onLoginSuccess={onLoginSuccess} setTheUser={setTheUser} />}
-  </div>
-  )
-}
+  
+    const onLoginSuccess = () => {
+    }
+  
+    const logoutHandler = () => {
+      setIsLoggedIn(false)
+      setDropdownOpen(false)
+    }
+  
+    const toggleDropdown = () => {
+      setDropdownOpen(false)
+    }
+  
+    const handleUserClick = (e) => {
+      e.preventDefault();
+      setPosition({ x: e.clientX, y: e.clientY });
+      setDropdownOpen(true);
+    }
+  
+    return (
+      <div>
+        <header style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', background: "#FFF", height: "50px", "--tw-shadow": "0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1)", boxShadow: "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)" }}>
+          <NavbarBrand className="pt-0" >
+            <img
+              className="navbar-brand-img"
+              src="https://finternetlab.io/images/headers/finternet-favicon.png"
+              onClick={() => window.location.href = "/admin/home"}
+            />
+          </NavbarBrand>
+          {isLoggedIn && (
+          <div style={{ display: 'flex', alignItems: 'center', padding: '10px', justifyContent: 'center', border: '0.25px solid black', width: '32px', height: '32px', margin: '9px', borderRadius: '50%' }}>
+            <i onClick={handleUserClick} style={{ fontSize: '24px' }} class="fa-solid fa-user-tie"></i>
+            <Dropdown
+              isOpen={dropdownOpen}
+              toggle={toggleDropdown}
+              style={{ position: "absolute", top: `${position.y}px`, left: `${position.x - 190}px` }}
+            >
+              <DropdownToggle tag="div" style={{ display: "none" }} /> {/* Invisible Trigger */}
+              <DropdownMenu>
+                <DropdownItem>
+                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{JSON.parse(localStorage.getItem("theUser")) }</div>
+                </DropdownItem>
+                <DropdownItem onClick={logoutHandler}>
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+          )}
+        </header>
+        {isLoggedIn ? (
+          <BrowserRouter>
+            <Routes>
+              <Route path="/admin/*" element={<AdminLayout theUser={theUser} />} />
+              <Route path="*" element={<Navigate to="/admin/home" replace />} />
+            </Routes>
+          </BrowserRouter>
+        ) : <LoginForm onLoginSuccess={onLoginSuccess} setIsLoggedIn={setIsLoggedIn} setTheUser={setTheUser} />}
+      </div>
+    )
+  }
 
 export default App
