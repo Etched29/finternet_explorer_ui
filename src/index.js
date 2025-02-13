@@ -25,8 +25,11 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/finternet-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
+import LoginForm from "views/LoginForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const isLoggedIn = false
 
 root.render(
   <div>
@@ -37,12 +40,15 @@ root.render(
           src="https://finternetlab.io/images/headers/finternet-favicon.png"
           onClick={() => window.location.href = "/admin/home"}
         />
-      </NavbarBrand></header>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/admin/*" element={<AdminLayout />} />
-        <Route path="*" element={<Navigate to="/admin/home" replace />} />
-      </Routes>
-    </BrowserRouter>
+      </NavbarBrand>
+    </header>
+    {isLoggedIn ? (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="*" element={<Navigate to="/admin/home" replace />} />
+        </Routes>
+      </BrowserRouter>
+    ) : <LoginForm />}
   </div>
 );

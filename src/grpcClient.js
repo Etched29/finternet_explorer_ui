@@ -1,5 +1,7 @@
-import { DriverClient, DriverDetailsClient, ExecutionClient, BindClient } from './service_grpc_web_pb';
-import { ListResolverRequest, DriverDetailsRequest, ExecutionRequest, LoadDriverRequest, BinaryType, SubmitProgramRequest, BindRequest, ListProgramRequest} from './service_pb';
+import { DriverClient, DriverDetailsClient, ExecutionClient, BindClient, UserLoginClient } from './service_grpc_web_pb';
+import { ListResolverRequest, DriverDetailsRequest, ExecutionRequest, LoadDriverRequest, BinaryType, SubmitProgramRequest, BindRequest, ListProgramRequest, LoginRequest } from './service_pb';
+// import { Metadata } from 'grpc-web';
+
 
 const API_DOMAIN = 'http://127.0.0.1:8080'
 
@@ -17,6 +19,10 @@ function createExecutionClient() {
 
 function createBindClient() {
   return new BindClient(API_DOMAIN, null, null);
+}
+
+function createLoginClient() {
+  return new UserLoginClient(API_DOMAIN, null, null);
 }
 
 export const getDriverList = () => {
@@ -57,10 +63,10 @@ export const executeCommand = (executeData) => {
       .setInput(input)
       .setProgramId(programId);
 
-      const sanitizedMetadata = {};
-      Object.keys(metadata).forEach((key) => {
-        sanitizedMetadata[key] = encodeURIComponent(metadata[key]); // Encode non-ASCII values
-      });
+    const sanitizedMetadata = {};
+    Object.keys(metadata).forEach((key) => {
+      sanitizedMetadata[key] = encodeURIComponent(metadata[key]); // Encode non-ASCII values
+    });
 
     executeClient.execute(request, sanitizedMetadata, (err, response) => {
       if (err) {
@@ -118,16 +124,16 @@ export const submit = async ({ name, version, binary }) => {
   })
 }
 
-export const bindUser = ( driverName, driverVersion, path, accountInfo ) => {
+export const bindUser = (driverName, driverVersion, path, accountInfo) => {
   return new Promise(async (resolve, reject) => {
     const client = createBindClient();
 
     const request = new BindRequest();
     request
-        .setDriverName(driverName)
-        .setDriverVersion(driverVersion)
-        .setPath(path)
-        .setAccountInfo(accountInfo);
+      .setDriverName(driverName)
+      .setDriverVersion(driverVersion)
+      .setPath(path)
+      .setAccountInfo(accountInfo);
 
     client.bind(request, {}, (err, response) => {
       if (err) {
@@ -153,3 +159,27 @@ export const getPrograms = () => {
     })
   })
 }
+
+export const login = ({ username, password }) => {
+  return new Promise((resolve, reject) => {
+    const client = createLoginClient();
+    const request = new LoginRequest();
+
+    request.setUsername(username);
+    request.setPassword(password);
+
+    // Create metadata object for outgoing headers
+    const metadata = {}
+    // Optional: Add any required headers
+    // metadata.set('custom-header', 'value');
+
+    client.login(request, metadata, (err, response) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(response.toObject());
+      }
+    );
+  });
+};
