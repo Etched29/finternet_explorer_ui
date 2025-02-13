@@ -23,8 +23,8 @@ import Program from "views/examples/Programs";
 
 var routes = [
   {
-    path: "/users",
-    name: "Users",
+    path: "/user",
+    name: "User",
     icon: "fa-solid fa-user-gear",
     component: Users,
     layout: "/admin"

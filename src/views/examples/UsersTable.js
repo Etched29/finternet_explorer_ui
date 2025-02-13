@@ -137,7 +137,7 @@ const UsersTable = ({ data, theUser }) => {
     <Card className="shadow users mx-auto" style={{ maxWidth: '90%', minWidth: '800px' }}>
       <CardHeader className="border-0" onContextMenu={headerContextClick}>
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className="mb-0">Users</h3>
+          <h3 className="mb-0">User</h3>
           {/* <Button
             className='navigateToBindCTA-2'
             color="primary"
