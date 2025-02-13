@@ -178,6 +178,7 @@ export const login = ({ username, password }) => {
           reject(err);
           return;
         }
+        localStorage.setItem("isLoggedIn", true)
         resolve(response.toObject());
       }
     );

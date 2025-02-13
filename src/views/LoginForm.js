@@ -12,7 +12,7 @@ import {
 import { login } from '../grpcClient'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const LoginForm = () => {
+const LoginForm = ({onLoginSuccess}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -26,6 +26,9 @@ const LoginForm = () => {
     }
     setError(null);
     const res = await login({username, password})
+    if(res.message) {
+        onLoginSuccess()
+    }
     console.log(res)
   };
 
