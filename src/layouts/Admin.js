@@ -65,11 +65,11 @@ const Admin = (props) => {
         <Routes>
           {getRoutes(routes)}
           <Route path="/home" element={<Home />} />
-          <Route path="/users/bind" element={<BindForm/>} />
+          <Route path="/users/bind" element={<BindForm handleCheck={props.handleCheck}/>} />
           <Route path="/users/add" element={<AddUserForm />} />
-          <Route path="/programs/upload" element={<Submit />} />
-          <Route path="/programs/execute" element={<Execute />} />
-          <Route path="/supported-token-drivers/upload" element={<Upload />} />
+          <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck}/>} />
+          <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck}/>} />
+          <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck}/>} />
           <Route path="*" element={<Navigate to="/admin/home" replace />} />
         </Routes>
       </div>

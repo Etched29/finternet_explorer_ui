@@ -173,4 +173,5 @@ message CheckRequest {
 
 message CheckResponse{
     bool message = 1;
+    string username = 2;
 }

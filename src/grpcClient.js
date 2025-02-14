@@ -196,19 +196,19 @@ export const login = ({ username, password }) => {
   });
 };
 
-// export const Check = () => {
-//   return new Promise((resolve, reject) => {
-//     const client = createCheckClient();
-//     const request = new CheckRequest();
-//     const metadata = {}
-//     let jwtToken=JSON.parse(localStorage.getItem("jwtToken")) 
-//     const data = client.check(request,{"Authorization":jwtToken}, (err, response) => {
-//       if (err) {
-//         console.error('Error:', err);
-//         reject(err);
-//         return;
-//       }
-//       resolve(JSON.stringify(response.toObject()))
-//     });
-//   });
-// };
+export const Check = () => {
+  return new Promise((resolve, reject) => {
+    const client = createCheckClient();
+    const request = new CheckRequest();
+    const metadata = {}
+    let jwtToken=JSON.parse(localStorage.getItem("jwtToken")) 
+    const data = client.check(request,{"Authorization":jwtToken}, (err, response) => {
+      if (err) {
+        console.error('Error:', err);
+        reject(err);
+        return;
+      }
+      resolve(response.toObject())
+    });
+  });
+};

@@ -57,8 +57,19 @@ const App = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleCheck = async (e) => {
+       const res = await Check();
+       console.log(res.message);
+       setIsLoggedIn(res.message);
+       setTheUser(res.username);
+      };
+
     useEffect(() => {
         if(JSON.parse(localStorage.getItem("jwtToken")) !==null){
+                // let res=Check();
+                // console.log(res.message)
+                handleCheck();
                 setIsLoggedIn(true)
         }
         else{
@@ -105,7 +116,7 @@ const App = () => {
               <DropdownToggle tag="div" style={{ display: "none" }} /> {/* Invisible Trigger */}
               <DropdownMenu>
                 <DropdownItem>
-                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{JSON.parse(localStorage.getItem("theUser")) }</div>
+                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{theUser}</div>
                 </DropdownItem>
                 <DropdownItem onClick={logoutHandler}>
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
@@ -118,11 +129,11 @@ const App = () => {
         {isLoggedIn ? (
           <BrowserRouter>
             <Routes>
-              <Route path="/admin/*" element={<AdminLayout theUser={theUser} />} />
+              <Route path="/admin/*" element={<AdminLayout theUser={theUser} handleCheck={handleCheck}/>} />
               <Route path="*" element={<Navigate to="/admin/home" replace />} />
             </Routes>
           </BrowserRouter>
-        ) : <LoginForm onLoginSuccess={onLoginSuccess} setIsLoggedIn={setIsLoggedIn} setTheUser={setTheUser} />}
+        ) : <LoginForm onLoginSuccess={onLoginSuccess} handleCheck={handleCheck} setIsLoggedIn={setIsLoggedIn} setTheUser={setTheUser} />}
       </div>
     )
   }

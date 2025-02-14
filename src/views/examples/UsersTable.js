@@ -35,11 +35,11 @@ const UsersTable = ({ data, theUser }) => {
     }
   }, []);
 
-  console.log("theUser", theUser)
+  // console.log("theUser", theUser)
 
   useEffect(() => {
     // Group the data by username and match drivers with user suffixes
-    let username= JSON.parse(localStorage.getItem("theUser")) 
+    let username= theUser;
     const grouped = {[username]: { username: username, bindings: [],id:username}};
 
     // // First, organize localStorage users
@@ -68,19 +68,19 @@ const UsersTable = ({ data, theUser }) => {
 
       if (matchingUser) {
         // Add to existing user's bindings
-        grouped[matchingUser.username].bindings.push({
+        grouped[theUser].bindings.push({
           ...item,
           accountInfo: accountInfo
         });
       } else if (!grouped[username]) {
         // Create new user entry if no match found
-        grouped[username] = {
-          username: username,
-          bindings: [{
-            ...item,
-            accountInfo: accountInfo
-          }]
-        };
+        // grouped[username] = {
+        //   username: username,
+        //   bindings: [{
+        //     ...item,
+        //     accountInfo: accountInfo
+        //   }]
+        // };
       } else {
         // Add to existing user's bindings
         grouped[username].bindings.push({

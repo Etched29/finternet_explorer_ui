@@ -4949,7 +4949,8 @@ proto.finternet.CheckResponse.prototype.toObject = function(opt_includeInstance)
  */
 proto.finternet.CheckResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-message: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+message: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+username: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -4990,6 +4991,10 @@ proto.finternet.CheckResponse.deserializeBinaryFromReader = function(msg, reader
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setMessage(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5026,6 +5031,13 @@ proto.finternet.CheckResponse.serializeBinaryToWriter = function(message, writer
       f
     );
   }
+  f = message.getUsername();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -5044,6 +5056,24 @@ proto.finternet.CheckResponse.prototype.getMessage = function() {
  */
 proto.finternet.CheckResponse.prototype.setMessage = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
+};
+
+
+/**
+ * optional string username = 2;
+ * @return {string}
+ */
+proto.finternet.CheckResponse.prototype.getUsername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.finternet.CheckResponse} returns this
+ */
+proto.finternet.CheckResponse.prototype.setUsername = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

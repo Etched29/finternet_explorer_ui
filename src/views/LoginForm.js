@@ -13,7 +13,7 @@ import { login } from '../grpcClient'
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-const LoginForm = ({setIsLoggedIn,setTheUser}) => {
+const LoginForm = ({setIsLoggedIn,setTheUser,handleCheck}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -33,7 +33,7 @@ const LoginForm = ({setIsLoggedIn,setTheUser}) => {
     else{
       console.log(res.message)
       localStorage.setItem("jwtToken",JSON.stringify(res.message)) 
-      localStorage.setItem("theUser",JSON.stringify(username)) 
+      // localStorage.setItem("theUser",JSON.stringify(username)) 
       setTheUser(username);
       setIsLoggedIn(true);
     }
