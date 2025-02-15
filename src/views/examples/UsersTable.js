@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Table,
   Card,
@@ -7,25 +8,13 @@ import {
   Badge,
   Button,
   Collapse,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from 'reactstrap';
 
 const UsersTable = ({ data, theUser }) => {
   const [expandedRows, setExpandedRows] = useState({});
   const [users, setUsers] = useState([]);
   const [groupedData, setGroupedData] = useState({});
-
-  const [dropdownOpen, setDropdownOpen] = useState('');
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [addUserVisibility, setAddUserVisibility] = useState(false);
-  const [addUserPos, setAddUserPos] = useState({ x: 0, y: 0 });
-
-
-  const toggleDropdown = () => setDropdownOpen((prevState) => prevState ? '' : prevState);
-  const toggleAddUser = () => setAddUserVisibility((prevState) => !prevState);
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Load users from localStorage
@@ -114,34 +103,18 @@ const UsersTable = ({ data, theUser }) => {
 
   const navigateToBindForm = (username) => {
     localStorage.setItem('selectedUser', username);
-    window.location.href = '/admin/users/bind';
+    navigate('/admin/user/bind')
   };
-
-  const handleContextMenu = (key) => (e) => {
-    e.preventDefault();
-    const container = document.querySelector('.shadow.users')
-    const rect = container?.getBoundingClientRect()
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    setDropdownOpen(key);
-  }
-
-  const headerContextClick = (e) => {
-    e.preventDefault();
-    const container = document.querySelector('.shadow.users')
-    const rect = container?.getBoundingClientRect()
-    setAddUserPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    setAddUserVisibility(true)
-  }
 
   return (
     <Card className="shadow users mx-auto" style={{ maxWidth: '90%', minWidth: '800px' }}>
-      <CardHeader className="border-0" onContextMenu={headerContextClick}>
+      <CardHeader className="border-0">
         <div className="d-flex justify-content-between align-items-center">
           <h3 className="mb-0">User</h3>
           {/* <Button
             className='navigateToBindCTA-2'
             color="primary"
-            onClick={() => window.location.href = '/admin/users/add'}
+            onClick={() => window.location.href = '/admin/user/add'}
           >
             <i class="fa-solid fa-user-plus"></i>
             &nbsp;&nbsp;Add User
@@ -153,26 +126,30 @@ const UsersTable = ({ data, theUser }) => {
           <thead>
             <tr>
               <th>Units ID</th>
-              {/* <th>Actions</th> */}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {Object.entries(groupedData).map(([username, userData], index) => (
               <React.Fragment key={username}>
-                <tr onClick={() => toggleRow(username)} onContextMenu={handleContextMenu(username + "_" + index)}>
+                <tr onClick={() => toggleRow(username)}>
                   <td>
                     <span className="text-primary">
                       {getUnitId(username)}
                     </span>
-                    <Dropdown
-                      isOpen={dropdownOpen === `${username}_${index}`}
-                      toggle={toggleDropdown}
-                      style={{ position: "absolute", top: `${position.y}px`, left: `${position.x}px` }}
-                    >
-                      <DropdownToggle tag="div" style={{ display: "none" }} /> {/* Invisible Trigger */}
-                      <DropdownMenu>
-                        <DropdownItem>
-                          <Button
+                  </td>
+                  <td>
+                    <div className="d-flex gap-2">
+{/* 
+                      <Button
+                        color="info"
+                        size="sm"
+                        onClick={() => toggleRow(username)}
+                        title={expandedRows[username] ? "Hide Details" : "Show Details"}
+                      >
+                        <i class={`fa-solid ${expandedRows[username] ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                      </Button> */}
+                      <Button
                             color="primary"
                             size="sm"
                             onClick={() => navigateToBindForm(username)}
@@ -183,9 +160,7 @@ const UsersTable = ({ data, theUser }) => {
                             &nbsp;&nbsp;
                             Link Account
                           </Button>
-                        </DropdownItem>
-                        <DropdownItem>
-                          <Button
+                      <Button
                             color="danger"
                             size="sm"
                             onClick={() => {
@@ -199,24 +174,8 @@ const UsersTable = ({ data, theUser }) => {
                             &nbsp;&nbsp;
                             Delete User
                           </Button>
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </td>
-                  {/* <td>
-                    <div className="d-flex gap-2">
-
-                      <Button
-                        color="info"
-                        size="sm"
-                        onClick={() => toggleRow(username)}
-                        title={expandedRows[username] ? "Hide Details" : "Show Details"}
-                      >
-                        <i class={`fa-solid ${expandedRows[username] ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                      </Button>
-
                     </div>
-                  </td> */}
+                  </td>
                 </tr>
                 <tr>
                   <td colSpan="5" className="p-0">

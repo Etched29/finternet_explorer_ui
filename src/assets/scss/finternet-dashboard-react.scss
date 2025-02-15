@@ -195,7 +195,7 @@
     padding: 0.4rem 0.4rem;
 }
 
-.navigateToBindCTA-2{
+.navigateToBindCTA-2 {
     position: absolute;
     right: 1rem;
     top: 0.5rem;
@@ -226,9 +226,9 @@
 
 .loginCTA {
     position: absolute;
-    bottom: 2rem;
-    left: 2.6rem;
-    right: 2.6rem;
+    bottom: 5.6rem;
+    left: 2.8rem;
+    right: 2.3rem;
     width: auto !important;
 }
 
@@ -237,15 +237,50 @@
     min-height: 1px !important;
     padding: 1.25rem !important;
     padding-top: 0rem !important;
-    padding-bottom: 4rem !important;
+    padding-bottom: 5rem !important;
 }
 
 #passwordEye {
     position: absolute;
     right: 50px;
-    bottom: 116px;
+    top: 248px;
 }
 
-.dropdown-menu .dropdown-item > i, .dropdown-menu .dropdown-item > svg {
+.dropdown-menu .dropdown-item>i,
+.dropdown-menu .dropdown-item>svg {
     margin-right: 0.5rem !important;
+}
+
+input:hover, input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    // background: linear-gradient(90deg, #007bff, #0056b3);
+    transform: scale(1.08);
+}
+
+.loginContainer {
+    padding: 54px 1.5rem !important;
+    height: 450px;
+}
+
+.signupCTA {
+    margin-top: 40px !important;
 }

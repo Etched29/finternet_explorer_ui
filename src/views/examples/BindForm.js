@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Card,
     CardBody,
@@ -17,8 +17,9 @@ import {
     DropdownItem,
 } from "reactstrap";
 import { getDriverList, bindUser } from '../../grpcClient'
+import { useNavigate } from "react-router-dom";
 
-const BindForm = ({handleCheck}) => {
+const BindForm = ({ handleCheck }) => {
     const [driverName, setDriverName] = useState("");
     const [driverVersion, setDriverVersion] = useState("");
     const [path, setPath] = useState("");
@@ -27,6 +28,7 @@ const BindForm = ({handleCheck}) => {
     const [output, setOutput] = useState(null);
     const [driverList, setDriverList] = useState(["No Token Handler"]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate()
 
     const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
 
@@ -37,7 +39,7 @@ const BindForm = ({handleCheck}) => {
         try {
             const res = await bindUser(driverName, driverVersion, path, accountInfo);
             console.log(res)
-            window.location.href = '/admin/users'
+            navigate('/admin/users')
         } catch (error) {
             setOutput("An error occurred while binding the driver.");
         } finally {
@@ -66,16 +68,19 @@ const BindForm = ({handleCheck}) => {
 
     useEffect(() => {
         fetchDrivers()
-        if(JSON.parse(localStorage.getItem("jwtToken")) !==null){
+        if (JSON.parse(localStorage.getItem("jwtToken")) !== null) {
             handleCheck();
-    }
-        
+        }
+
     }, [])
 
     return (
         <Card className="shadow">
             <CardHeader>
                 <h3>User Onboarding</h3>
+                <Button className='backButton' onClick={() => window.history.back()}>
+                    <i class="fa-solid fa-left-long"></i>
+                </Button>
             </CardHeader>
             <CardBody>
                 {loading ? (

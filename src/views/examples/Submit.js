@@ -12,6 +12,7 @@ import {
     Spinner
 } from 'reactstrap';
 import { submit } from '../../grpcClient';
+import { useNavigate } from 'react-router-dom';
 
 const Submit = () => {
 
@@ -19,6 +20,7 @@ const Submit = () => {
     const [version, setVersion] = useState("");
     const [loading, setLoading] = useState(false);
     const [driverBinary, setDriverBinary] = useState(null);
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +30,7 @@ const Submit = () => {
         try {
             const response = await submit({ name, version, binary: driverBinary });
             console.log("response", response)
-            window.location.href = '/admin/programs'
+            navigate('/admin/programs')
             // setOutput(response);
         } catch (error) {
             // setOutput('An error occurred while loading the driver.');

@@ -16,7 +16,7 @@
 
 */
 import React, { useEffect } from "react";
-import { useLocation, Route, Routes, Navigate } from "react-router-dom";
+import { useLocation, Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import Home from "views/examples/Home.js";
 
@@ -29,6 +29,15 @@ import Execute from "views/examples/Execute.js";
 import Upload from "views/examples/Upload";
 
 const Admin = (props) => {
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("jwtToken"))) {
+      navigate('/login')
+    }
+  }, [location.pathname])
 
   const getRoutes = (routes) => {
     return routes.flatMap((prop, key) => {
@@ -51,7 +60,7 @@ const Admin = (props) => {
       return [mainRoute, ...subRoutes].filter(Boolean);
     });
   };
- 
+
   console.log("props", props);
 
   return (
@@ -65,11 +74,11 @@ const Admin = (props) => {
         <Routes>
           {getRoutes(routes)}
           <Route path="/home" element={<Home />} />
-          <Route path="/users/bind" element={<BindForm handleCheck={props.handleCheck}/>} />
-          <Route path="/users/add" element={<AddUserForm />} />
-          <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck}/>} />
-          <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck}/>} />
-          <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck}/>} />
+          <Route path="/user/bind" element={<BindForm handleCheck={props.handleCheck} />} />
+          <Route path="/user/add" element={<AddUserForm />} />
+          <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck} />} />
+          <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck} />} />
+          <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck} />} />
           <Route path="*" element={<Navigate to="/admin/home" replace />} />
         </Routes>
       </div>

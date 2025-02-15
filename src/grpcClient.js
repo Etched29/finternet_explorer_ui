@@ -1,5 +1,5 @@
-import { DriverClient, DriverDetailsClient, ExecutionClient, BindClient, UserLoginClient, UserCheckClient } from './service_grpc_web_pb';
-import { ListResolverRequest, DriverDetailsRequest, ExecutionRequest, LoadDriverRequest, BinaryType, SubmitProgramRequest, BindRequest, ListProgramRequest, LoginRequest,CheckRequest } from './service_pb';
+import { DriverClient, DriverDetailsClient, ExecutionClient, BindClient, UserLoginClient, UserCheckClient, UserSignUpClient } from './service_grpc_web_pb';
+import { ListResolverRequest, DriverDetailsRequest, ExecutionRequest, LoadDriverRequest, BinaryType, SubmitProgramRequest, BindRequest, ListProgramRequest, LoginRequest, CheckRequest, SignUpRequest } from './service_pb';
 import { Metadata } from 'grpc-web';
 // import { StatusCodes } from '@grpc/grpc-js'; // Import gRPC status codes
 
@@ -28,6 +28,9 @@ function createLoginClient() {
 }
 function createCheckClient() {
   return new UserCheckClient(API_DOMAIN, null, null);
+}
+function createUserSignUpClient() {
+  return new UserSignUpClient(API_DOMAIN, null, null);
 }
 
 export const getDriverList = () => {
@@ -209,6 +212,28 @@ export const Check = () => {
         return;
       }
       resolve(response.toObject())
+    });
+  });
+};
+
+
+export const signup = ({ username, name, email, password }) => {
+  return new Promise((resolve, reject) => {
+    const client = createUserSignUpClient();
+    const request = new SignUpRequest();
+
+    request.setUsername(username);
+    request.setName(name);
+    request.setEmail(email);
+    request.setPassword(password);
+
+    client.signUp(request, {}, (err, response) => {
+      if (err) {
+        console.error('Error:', err);
+        reject(err);
+        return;
+      }
+      resolve(response.toObject());
     });
   });
 };

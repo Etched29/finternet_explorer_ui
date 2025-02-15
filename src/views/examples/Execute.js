@@ -61,6 +61,7 @@ const Execute = () => {
 
     try {
       const response = await executeCommand({ input, programId: selectedProgramId });
+      setInput('')
       if(!outputObj[selectedProgramId]) {
         outputObj[selectedProgramId] = []
       }

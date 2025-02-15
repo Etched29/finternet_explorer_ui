@@ -8,6 +8,7 @@ import {
     Button
 } from 'reactstrap';
 import { getPrograms } from '../../grpcClient'
+import { useNavigate } from "react-router-dom";
 
 const sanitizeLocalStorage = (programList) => { 
     const output = localStorage.getItem("output")
@@ -42,6 +43,7 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
         name: "Program 4",
         version: '1.0.0'
     }])
+    const navigate = useNavigate()
 
     const fetchList = async () => {
         try {
@@ -67,7 +69,7 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
         <Card className="shadow programs">
             <CardHeader>
                 <h3 className="mb-0">Program Details</h3>
-                <Button className='navigateToBindCTA' color="primary" type="submit" block onClick={() => window.location.href = '/admin/programs/upload'}>
+                <Button className='navigateToBindCTA' color="primary" type="submit" block onClick={() => navigate('/admin/programs/upload')}>
                 <i class="fa-regular fa-plus"></i>
                 &nbsp;
                     Add

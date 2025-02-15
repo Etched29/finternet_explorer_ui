@@ -12,6 +12,7 @@ import {
   Button,
   Spinner
 } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
 const JsonPrettifier = ({ output }) => {
   try {
@@ -38,6 +39,7 @@ const Upload = ({ onUploadSuccess }) => {
   const [output, setOutput] = useState(null);
   const [handlerType, setHandlerType] = useState('')
   const [storageType, setStorageType] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,8 +48,7 @@ const Upload = ({ onUploadSuccess }) => {
     try {
       const response = await loadDriver({ driverName, driverVersion, driverBinary });
       setOutput(response);
-      // onUploadSuccess()
-      window.location.href = '/admin/supported-token-drivers'
+      navigate('/admin/supported-token-drivers')
     } catch (error) {
       setOutput('An error occurred while loading the driver.');
       console.error(error);

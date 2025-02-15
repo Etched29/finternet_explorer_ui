@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 const MyBreadcrumb = () => {
@@ -24,7 +24,7 @@ const MyBreadcrumb = () => {
         {pathList.map((path, index) => {
             return (
                 <BreadcrumbItem key={index}>
-                    <a href={`/admin/${path}`} className="breadcrumb-item">{path}</a>
+                    <Link  to={`/admin/${path}`} className="breadcrumb-item">{path}</Link>
                 </BreadcrumbItem>
             )
         })}

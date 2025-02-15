@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -9,8 +10,10 @@ import {
 
 const SupportTokenDetails = ({ data }) => {
 
+  const navigate = useNavigate()
+
   const addClickHandler = () => {
-    window.location.href = '/admin/supported-token-drivers/upload'
+    navigate('/admin/supported-token-drivers/upload')
   }
 
   return (
