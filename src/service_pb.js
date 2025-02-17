@@ -4208,7 +4208,7 @@ proto.finternet.SignUpRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.finternet.SignUpRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-username: jspb.Message.getFieldWithDefault(msg, 1, ""),
+userName: jspb.Message.getFieldWithDefault(msg, 1, ""),
 name: jspb.Message.getFieldWithDefault(msg, 2, ""),
 email: jspb.Message.getFieldWithDefault(msg, 3, ""),
 password: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -4250,7 +4250,7 @@ proto.finternet.SignUpRequest.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
+      msg.setUserName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -4293,7 +4293,7 @@ proto.finternet.SignUpRequest.prototype.serializeBinary = function() {
  */
 proto.finternet.SignUpRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUsername();
+  f = message.getUserName();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4325,10 +4325,10 @@ proto.finternet.SignUpRequest.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string username = 1;
+ * optional string user_name = 1;
  * @return {string}
  */
-proto.finternet.SignUpRequest.prototype.getUsername = function() {
+proto.finternet.SignUpRequest.prototype.getUserName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -4337,7 +4337,7 @@ proto.finternet.SignUpRequest.prototype.getUsername = function() {
  * @param {string} value
  * @return {!proto.finternet.SignUpRequest} returns this
  */
-proto.finternet.SignUpRequest.prototype.setUsername = function(value) {
+proto.finternet.SignUpRequest.prototype.setUserName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -4558,7 +4558,7 @@ proto.finternet.LoginRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.finternet.LoginRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-username: jspb.Message.getFieldWithDefault(msg, 1, ""),
+userName: jspb.Message.getFieldWithDefault(msg, 1, ""),
 password: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -4598,7 +4598,7 @@ proto.finternet.LoginRequest.deserializeBinaryFromReader = function(msg, reader)
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
+      msg.setUserName(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -4633,7 +4633,7 @@ proto.finternet.LoginRequest.prototype.serializeBinary = function() {
  */
 proto.finternet.LoginRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUsername();
+  f = message.getUserName();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4651,10 +4651,10 @@ proto.finternet.LoginRequest.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * optional string username = 1;
+ * optional string user_name = 1;
  * @return {string}
  */
-proto.finternet.LoginRequest.prototype.getUsername = function() {
+proto.finternet.LoginRequest.prototype.getUserName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -4663,7 +4663,7 @@ proto.finternet.LoginRequest.prototype.getUsername = function() {
  * @param {string} value
  * @return {!proto.finternet.LoginRequest} returns this
  */
-proto.finternet.LoginRequest.prototype.setUsername = function(value) {
+proto.finternet.LoginRequest.prototype.setUserName = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -4950,7 +4950,7 @@ proto.finternet.CheckResponse.prototype.toObject = function(opt_includeInstance)
 proto.finternet.CheckResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
 message: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-username: jspb.Message.getFieldWithDefault(msg, 2, "")
+userName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -4993,7 +4993,7 @@ proto.finternet.CheckResponse.deserializeBinaryFromReader = function(msg, reader
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
+      msg.setUserName(value);
       break;
     default:
       reader.skipField();
@@ -5031,7 +5031,7 @@ proto.finternet.CheckResponse.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-  f = message.getUsername();
+  f = message.getUserName();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -5060,10 +5060,10 @@ proto.finternet.CheckResponse.prototype.setMessage = function(value) {
 
 
 /**
- * optional string username = 2;
+ * optional string user_name = 2;
  * @return {string}
  */
-proto.finternet.CheckResponse.prototype.getUsername = function() {
+proto.finternet.CheckResponse.prototype.getUserName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -5072,7 +5072,7 @@ proto.finternet.CheckResponse.prototype.getUsername = function() {
  * @param {string} value
  * @return {!proto.finternet.CheckResponse} returns this
  */
-proto.finternet.CheckResponse.prototype.setUsername = function(value) {
+proto.finternet.CheckResponse.prototype.setUserName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 

@@ -172,7 +172,7 @@ export const login = ({ username, password }) => {
     const client = createLoginClient();
     const request = new LoginRequest();
 
-    request.setUsername(username);
+    request.setUserName(username);
     request.setPassword(password);
     const metadata = {}
 
