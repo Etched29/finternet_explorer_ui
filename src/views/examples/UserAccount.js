@@ -66,7 +66,7 @@ const UserAccount = () => {
 
                 // Find matching user by suffix
                 const matchingUser = Object.values(grouped).find(user =>
-                    item.driverName.toLowerCase().endsWith(user.username.toLowerCase())
+                    item.driverName?.toLowerCase().endsWith(user.username.toLowerCase())
                 );
 
                 if (matchingUser) {
