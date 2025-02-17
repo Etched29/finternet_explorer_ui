@@ -23,7 +23,7 @@ const App = () => {
        const res = await Check();
        console.log(res.message);
        setIsLoggedIn(res.message);
-       setTheUser(res.username);
+       setTheUser(res.userName);
       };
 
     useEffect(() => {

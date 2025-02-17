@@ -29,10 +29,10 @@ const UsersTable = ({ data, theUser }) => {
 
   useEffect(() => {
     // Load users from localStorage
-    const savedUsers = localStorage.getItem('users');
-    if (savedUsers) {
-      setUsers(JSON.parse(savedUsers));
-    }
+    // const savedUsers = localStorage.getItem('users');
+    // if (savedUsers) {
+    //   setUsers(JSON.parse(savedUsers));
+    // }
   }, []);
 
   // console.log("theUser", theUser)
@@ -63,7 +63,7 @@ const UsersTable = ({ data, theUser }) => {
 
       // Find matching user by suffix
       const matchingUser = Object.values(grouped).find(user =>
-        item.driverName.toLowerCase().endsWith(user.username.toLowerCase())
+        item.driverName.toLowerCase().endsWith(username.toLowerCase())
       );
 
       if (matchingUser) {

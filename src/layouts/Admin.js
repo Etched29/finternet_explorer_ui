@@ -64,13 +64,13 @@ const Admin = (props) => {
         <MyBreadcrumb />
         <Routes>
           {getRoutes(routes)}
-          <Route path="/home" element={<Home />} />
-          <Route path="/users/bind" element={<BindForm handleCheck={props.handleCheck}/>} />
-          <Route path="/users/add" element={<AddUserForm />} />
-          <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck}/>} />
-          <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck}/>} />
-          <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck}/>} />
-          <Route path="*" element={<Navigate to="/admin/home" replace />} />
+          <Route path="/home" element={<Home theUser={props.theUser}/>} />
+          <Route path="/users/bind" element={<BindForm handleCheck={props.handleCheck} theUser={props.theUser}/>} />
+          <Route path="/users/add" element={<AddUserForm theUser={props.theUser}/>} />
+          <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck} theUser={props.theUser}/>} />
+          <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck} theUser={props.theUser}/>} />
+          <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck} theUser={props.theUser}/>} />
+          <Route path="*" element={<Navigate to="/admin/home" replace theUser={props.theUser} />} />
         </Routes>
       </div>
     </>
