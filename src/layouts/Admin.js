@@ -27,6 +27,7 @@ import AddUserForm from "views/examples/AddUserForm";
 import Submit from "views/examples/Submit";
 import Execute from "views/examples/Execute.js";
 import Upload from "views/examples/Upload";
+import UserAccount from "views/examples/UserAccount";
 
 const Admin = (props) => {
 
@@ -76,6 +77,7 @@ const Admin = (props) => {
           <Route path="/home" element={<Home />} />
           <Route path="/user/bind" element={<BindForm handleCheck={props.handleCheck} />} />
           <Route path="/user/add" element={<AddUserForm />} />
+          <Route path="/user/account" element={<UserAccount />} />
           <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck} />} />
           <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck} />} />
           <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck} />} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   Table,
   Card,
@@ -14,7 +15,6 @@ const UsersTable = ({ data, theUser }) => {
   const [expandedRows, setExpandedRows] = useState({});
   const [users, setUsers] = useState([]);
   const [groupedData, setGroupedData] = useState({});
-  const navigate = useNavigate()
 
   useEffect(() => {
     // Load users from localStorage
@@ -28,8 +28,8 @@ const UsersTable = ({ data, theUser }) => {
 
   useEffect(() => {
     // Group the data by username and match drivers with user suffixes
-    let username= theUser;
-    const grouped = {[username]: { username: username, bindings: [],id:username}};
+    let username = localStorage.getItem("theUser");
+    const grouped = { [username]: { username: username, bindings: [], id: username } };
 
     // // First, organize localStorage users
     // users.forEach(user => {
@@ -78,9 +78,9 @@ const UsersTable = ({ data, theUser }) => {
         });
       }
     });
-
+    window.users = grouped;
     setGroupedData(grouped);
-  }, [data, users]);
+  }, [data, users, theUser]);
 
   const toggleRow = (username) => {
     setExpandedRows(prev => ({
@@ -99,11 +99,6 @@ const UsersTable = ({ data, theUser }) => {
 
   const getUnitId = (username) => {
     return username ? `${username}@myunits` : 'N/A';
-  };
-
-  const navigateToBindForm = (username) => {
-    localStorage.setItem('selectedUser', username);
-    navigate('/admin/user/bind')
   };
 
   return (
@@ -126,7 +121,7 @@ const UsersTable = ({ data, theUser }) => {
           <thead>
             <tr>
               <th>Units ID</th>
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -134,92 +129,11 @@ const UsersTable = ({ data, theUser }) => {
               <React.Fragment key={username}>
                 <tr onClick={() => toggleRow(username)}>
                   <td>
-                    <span className="text-primary">
-                      {getUnitId(username)}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="d-flex gap-2">
-{/* 
-                      <Button
-                        color="info"
-                        size="sm"
-                        onClick={() => toggleRow(username)}
-                        title={expandedRows[username] ? "Hide Details" : "Show Details"}
-                      >
-                        <i class={`fa-solid ${expandedRows[username] ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                      </Button> */}
-                      <Button
-                            color="primary"
-                            size="sm"
-                            onClick={() => navigateToBindForm(username)}
-                            title='Link Account'
-                            style={{ width: '130px', height: '35px' }}
-                          >
-                            <i className='linkIcon' class="fa-solid fa-link"></i>
-                            &nbsp;&nbsp;
-                            Link Account
-                          </Button>
-                      <Button
-                            color="danger"
-                            size="sm"
-                            onClick={() => {
-                              const updatedUsers = users.filter(user => user.username !== username);
-                              localStorage.setItem('users', JSON.stringify(updatedUsers));
-                              setUsers(updatedUsers);
-                            }}
-                            style={{ width: '130px', height: '35px' }}
-                          >
-                            <i class="fa-solid fa-trash"></i>
-                            &nbsp;&nbsp;
-                            Delete User
-                          </Button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan="5" className="p-0">
-                    <Collapse isOpen={expandedRows[username]}>
-                      <div className='sub-table-container'>
-                        <Table responsive hover className="align-items-center sub-table">
-                          <thead>
-                            <tr>
-                              <th>User Name</th>
-                              <th>Token Driver Name</th>
-                              <th>Version</th>
-                              <th>Path</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {userData.bindings.map((binding, index) => (
-                              <tr key={binding.path || index}>
-                                <td>{username}</td>
-                                <td>
-                                  <Badge color="info" className="badge-lg">
-                                    {binding.driverName}
-                                  </Badge>
-                                </td>
-                                <td>
-                                  <Badge color="success" className="badge-lg">
-                                    {binding.driverVersion}
-                                  </Badge>
-                                </td>
-                                <td>
-                                  <span className="text-primary">{binding.path || 'Not set'}</span>
-                                </td>
-                              </tr>
-                            ))}
-                            {userData.bindings.length === 0 && (
-                              <tr>
-                                <td colSpan="4" className="text-center">
-                                  No bindings available
-                                </td>
-                              </tr>
-                            )}
-                          </tbody>
-                        </Table>
-                      </div>
-                    </Collapse>
+                    <Link to={`/admin/user/account?username=${username}`} style={{display:"inline-block", width:"100%"}}>
+                      <span className="text-primary">
+                        {getUnitId(username)}
+                      </span>
+                    </Link>
                   </td>
                 </tr>
               </React.Fragment>

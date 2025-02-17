@@ -251,7 +251,8 @@
     margin-right: 0.5rem !important;
 }
 
-input:hover, input:focus {
+input:hover,
+input:focus {
     border-color: #007bff;
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
@@ -283,4 +284,13 @@ button:hover {
 
 .signupCTA {
     margin-top: 40px !important;
+}
+
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #007bff, #0056b3) !important;
+    transform: scale(1.08) !important;
 }

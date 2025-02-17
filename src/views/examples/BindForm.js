@@ -39,7 +39,7 @@ const BindForm = ({ handleCheck }) => {
         try {
             const res = await bindUser(driverName, driverVersion, path, accountInfo);
             console.log(res)
-            navigate('/admin/users')
+            window.history.back()
         } catch (error) {
             setOutput("An error occurred while binding the driver.");
         } finally {
