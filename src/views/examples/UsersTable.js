@@ -28,7 +28,7 @@ const UsersTable = ({ data, theUser }) => {
 
   useEffect(() => {
     // Group the data by username and match drivers with user suffixes
-    let username = localStorage.getItem("theUser");
+    let username = JSON.parse(localStorage.getItem("theUser"));
     const grouped = { [username]: { username: username, bindings: [], id: username } };
 
     // // First, organize localStorage users

@@ -35,7 +35,7 @@ const Admin = (props) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("jwtToken"))) {
+    if (!localStorage.getItem("jwtToken") || !localStorage.getItem("theUser"))   {
       navigate('/login')
     }
   }, [location.pathname])

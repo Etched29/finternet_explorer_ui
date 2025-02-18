@@ -42,7 +42,7 @@ const UserAccount = () => {
             const usersList = await getResolverList()
             console.log(usersList)
             const { pathMappingList } = usersList
-            let username = localStorage.getItem("theUser");
+            let username = JSON.parse(localStorage.getItem("theUser"));
             const grouped = { [username]: { username: username, bindings: [], id: username } };
 
             // // First, organize localStorage users
