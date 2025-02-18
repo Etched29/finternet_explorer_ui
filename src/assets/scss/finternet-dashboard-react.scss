@@ -59,9 +59,11 @@
 }
 
 .shadow.card {
-    width: 45%;
+    width: 130%;
+    height: 150%;
     min-width: 450px;
     margin-top: 100px;
+    font-size:large;
 }
 
 .shadow:hover {
@@ -97,12 +99,14 @@
 .sub-table {
     background: #fff;
     border-radius: 5px;
+    width: 50%;
     padding: 20px;
 }
 
 .support-tokens-container {
     display: flex;
     width: 80%;
+    height: 50%;
     transition: justify-content 1s;
     justify-content: space-around;
 }
@@ -115,8 +119,9 @@
 }
 
 .programs {
-    width: 50% !important;
-    max-width: 600px;
+    width: 80% !important;
+    height: 150%;
+    // max-width: 600px;
 }
 
 .execute-container {
@@ -188,11 +193,14 @@
 }
 
 .navigateToBindCTA {
-    width: 20% !important;
+    width: 8% !important;
+    height: 10%;
+    font-size: large;
+    font-weight: 300;
     position: absolute;
     right: 1rem;
     top: 0.5rem;
-    padding: 0.4rem 0.4rem;
+    padding: 0.09rem 0.1rem;
 }
 
 .navigateToBindCTA-2 {
@@ -209,7 +217,7 @@
 .driverSelectForm .dropdown-toggle {
     background: #fff;
     color: #000;
-    border: none;
+    border: none
 }
 
 .selected-program-row {
@@ -222,6 +230,7 @@
 
 .dropdown-menu {
     transform: none !important;
+    overflow: hidden !important;
 }
 
 .loginCTA {
@@ -251,7 +260,8 @@
     margin-right: 0.5rem !important;
 }
 
-input:hover, input:focus {
+input:hover,
+input:focus {
     border-color: #007bff;
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
@@ -283,4 +293,13 @@ button:hover {
 
 .signupCTA {
     margin-top: 40px !important;
+}
+
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #007bff, #0056b3) !important;
+    transform: scale(1.08) !important;
 }

@@ -34,8 +34,8 @@ const LoginForm = ({ setIsLoggedIn, setTheUser, handleCheck }) => {
     }
     else {
       console.log(res.message)
-      localStorage.setItem("jwtToken", JSON.stringify(res.message))
-      // localStorage.setItem("theUser",JSON.stringify(username)) 
+      localStorage.setItem("jwtToken", JSON.stringify(res.jwt_token))
+      localStorage.setItem("theUser",JSON.stringify(username)) 
       setTheUser(username);
       setIsLoggedIn(true);
       navigate("/admin/home")

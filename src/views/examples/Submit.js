@@ -41,7 +41,7 @@ const Submit = () => {
     }
 
     return (
-        <Card className="shadow">
+        <Card className="shadow w-50">
             <CardHeader>
                 <h3 className="mb-0">
                     Add Program

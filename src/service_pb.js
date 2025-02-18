@@ -4718,7 +4718,7 @@ proto.finternet.LoginResponse.prototype.toObject = function(opt_includeInstance)
  */
 proto.finternet.LoginResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-message: jspb.Message.getFieldWithDefault(msg, 1, "")
+jwtToken: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -4757,7 +4757,7 @@ proto.finternet.LoginResponse.deserializeBinaryFromReader = function(msg, reader
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
+      msg.setJwtToken(value);
       break;
     default:
       reader.skipField();
@@ -4788,7 +4788,7 @@ proto.finternet.LoginResponse.prototype.serializeBinary = function() {
  */
 proto.finternet.LoginResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessage();
+  f = message.getJwtToken();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -4799,10 +4799,10 @@ proto.finternet.LoginResponse.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional string message = 1;
+ * optional string jwt_token = 1;
  * @return {string}
  */
-proto.finternet.LoginResponse.prototype.getMessage = function() {
+proto.finternet.LoginResponse.prototype.getJwtToken = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -4811,7 +4811,7 @@ proto.finternet.LoginResponse.prototype.getMessage = function() {
  * @param {string} value
  * @return {!proto.finternet.LoginResponse} returns this
  */
-proto.finternet.LoginResponse.prototype.setMessage = function(value) {
+proto.finternet.LoginResponse.prototype.setJwtToken = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 

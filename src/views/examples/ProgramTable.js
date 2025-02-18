@@ -68,7 +68,7 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
     return (
         <Card className="shadow programs">
             <CardHeader>
-                <h3 className="mb-0">Program Details</h3>
+                <h3 className="mb-0 ">Program Details</h3>
                 <Button className='navigateToBindCTA' color="primary" type="submit" block onClick={() => navigate('/admin/programs/upload')}>
                 <i class="fa-regular fa-plus"></i>
                 &nbsp;
@@ -87,12 +87,12 @@ const ProgramTable = ({ onRowSelect, selectedProgramId, onExecuteCTAClick }) => 
                         {list.map((driver, index) => (
                             <tr key={index} className={`cursor-pointer ${selectedProgramId === driver.programId ? 'selected-program-row' : ''}`} onClick={onExecuteCTAClick(driver.programId, driver.name)}>
                                 <td>
-                                    <Badge color="info" className="badge-lg">
+                                    <Badge color="info" className="badge-lg text-sm text-capitalize">
                                         {driver.name}
                                     </Badge>
                                 </td>
                                 <td>
-                                    <Badge color="success" className="badge-lg">
+                                    <Badge color="success" className="badge-lg text-sm text-capitalize">
                                         {driver.version}
                                     </Badge>
                                 </td>

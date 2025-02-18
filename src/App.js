@@ -24,6 +24,7 @@ const App = () => {
     console.log(res.message);
     setIsLoggedIn(res.message);
     setTheUser(res.username);
+    // localStorage.setItem("theUser", JSON.stringify(res.username))
   };
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const App = () => {
     setIsLoggedIn(false)
     setDropdownOpen(false)
     localStorage.removeItem("jwtToken")
+    localStorage.removeItem("theUser")
     window.location.href = 'login'
   }
 
@@ -79,7 +81,7 @@ const App = () => {
               <DropdownToggle tag="div" style={{ display: "none" }} /> {/* Invisible Trigger */}
               <DropdownMenu>
                 <DropdownItem>
-                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{theUser}</div>
+                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{JSON.parse(localStorage.getItem("theUser"))}</div>
                 </DropdownItem>
                 <DropdownItem onClick={logoutHandler}>
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout

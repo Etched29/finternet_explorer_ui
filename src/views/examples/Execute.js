@@ -81,7 +81,7 @@ const Execute = () => {
 
   console.log("output", output)
   return (
-      <Card className="shadow execute-card">
+      <Card className="shadow execute-card ">
         <Form className="execute-form" onSubmit={handleSubmit}>
           <FormGroup>
             <h3>Input</h3>
@@ -96,7 +96,7 @@ const Execute = () => {
             />
           </FormGroup>
 
-          <Button className="execute-button" color="primary" type="submit" block>
+          <Button className="execute-button mt-2 position-relative py-2 px-6" color="primary" type="submit" block>
             Execute
           </Button>
         </Form>

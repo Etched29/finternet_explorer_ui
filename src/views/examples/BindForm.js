@@ -39,7 +39,7 @@ const BindForm = ({ handleCheck }) => {
         try {
             const res = await bindUser(driverName, driverVersion, path, accountInfo);
             console.log(res)
-            navigate('/admin/users')
+            window.history.back()
         } catch (error) {
             setOutput("An error occurred while binding the driver.");
         } finally {
@@ -75,7 +75,7 @@ const BindForm = ({ handleCheck }) => {
     }, [])
 
     return (
-        <Card className="shadow">
+        <Card className="shadow w-50">
             <CardHeader>
                 <h3>User Onboarding</h3>
                 <Button className='backButton' onClick={() => window.history.back()}>
@@ -98,12 +98,12 @@ const BindForm = ({ handleCheck }) => {
                         <FormGroup>
                             <Label for="driverName">Token Type</Label>
                             <Dropdown className="driverSelectForm" isOpen={dropdownOpen} toggle={toggleDropdown}>
-                                <DropdownToggle caret>
+                                <DropdownToggle caret size="lg">
                                     {driverName || "Select Type"}
                                 </DropdownToggle>
-                                <DropdownMenu>
+                                <DropdownMenu className="">
                                     {driverList.map((driver) => (
-                                        <DropdownItem key={driver} onClick={() => setDriverName(driver)}>
+                                        <DropdownItem key={driver} onClick={() => setDriverName(driver)} >
                                             {driver}
                                         </DropdownItem>
                                     ))}
