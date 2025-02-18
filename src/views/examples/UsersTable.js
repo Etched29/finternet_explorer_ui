@@ -10,7 +10,7 @@ import {
   Collapse,
 } from 'reactstrap';
 
-const UsersTable = ({ data, theUser }) => {
+const UsersTable = ({ data, theUser,handleCheck }) => {
   const [expandedRows, setExpandedRows] = useState({});
   const [users, setUsers] = useState([]);
   const [groupedData, setGroupedData] = useState({});
@@ -18,17 +18,19 @@ const UsersTable = ({ data, theUser }) => {
 
   useEffect(() => {
     // Load users from localStorage
-    const savedUsers = localStorage.getItem('users');
-    if (savedUsers) {
-      setUsers(JSON.parse(savedUsers));
-    }
+    // const savedUsers = localStorage.getItem('users');
+    // if (savedUsers) {
+    //   setUsers(JSON.parse(savedUsers));
+    // }
   }, []);
 
   // console.log("theUser", theUser)
+  
 
   useEffect(() => {
     // Group the data by username and match drivers with user suffixes
     let username= theUser;
+    console.log("username", theUser);
     const grouped = {[username]: { username: username, bindings: [],id:username}};
 
     // // First, organize localStorage users
@@ -80,7 +82,7 @@ const UsersTable = ({ data, theUser }) => {
     });
 
     setGroupedData(grouped);
-  }, [data, users]);
+  }, [data, users, theUser]);
 
   const toggleRow = (username) => {
     setExpandedRows(prev => ({
