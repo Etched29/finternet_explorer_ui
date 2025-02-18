@@ -24,7 +24,7 @@ const App = () => {
     console.log(res.message);
     setIsLoggedIn(res.message);
     setTheUser(res.username);
-    localStorage.setItem("theUser", JSON.stringify(res.username))
+    // localStorage.setItem("theUser", JSON.stringify(res.username))
   };
 
   useEffect(() => {

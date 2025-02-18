@@ -75,7 +75,7 @@ const Admin = (props) => {
         <Routes>
           {getRoutes(routes)}
           <Route path="/home" element={<Home />} />
-          <Route path="/user/bind" element={<BindForm handleCheck={props.handleCheck} />} />
+          <Route path="/user/account/bind" element={<BindForm handleCheck={props.handleCheck} />} />
           <Route path="/user/add" element={<AddUserForm />} />
           <Route path="/user/account" element={<UserAccount />} />
           <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck} />} />

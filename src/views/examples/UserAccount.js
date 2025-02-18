@@ -26,7 +26,7 @@ const UserAccount = () => {
     }, [searchParams])
     const navigateToBindForm = (username) => {
         localStorage.setItem('selectedUser', username);
-        navigate('/admin/user/bind')
+        navigate('/admin/user/account/bind')
     };
 
     const parseAccountInfo = (info) => {
@@ -97,9 +97,9 @@ const UserAccount = () => {
             console.log(error)
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         fetchUsers()
-    },[])
+    }, [])
     return (
         <Card className="shadow users mx-auto" style={{ maxWidth: '90%', minWidth: '800px' }}>
             <CardHeader className="border-0">
@@ -144,15 +144,18 @@ const UserAccount = () => {
                     <thead>
                         <tr>
                             {/* <th>User Name</th> */}
+                            <th>Path</th>
                             <th>Token Driver Name</th>
                             <th>Version</th>
-                            <th>Path</th>
                         </tr>
                     </thead>
                     <tbody>
                         {userData.bindings?.map((binding, index) => (
                             <tr key={binding.path || index}>
                                 {/* <td>{username}</td> */}
+                                    <td>
+                                        <span className="text-primary">{binding.path || 'Not set'}</span>
+                                    </td>
                                 <td>
                                     <Badge color="info" className="badge-lg">
                                         {binding.driverName}
@@ -162,9 +165,6 @@ const UserAccount = () => {
                                     <Badge color="success" className="badge-lg">
                                         {binding.driverVersion}
                                     </Badge>
-                                </td>
-                                <td>
-                                    <span className="text-primary">{binding.path || 'Not set'}</span>
                                 </td>
                             </tr>
                         ))}
