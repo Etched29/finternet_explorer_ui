@@ -35,7 +35,7 @@ const Admin = (props) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!localStorage.getItem("jwtToken") || !localStorage.getItem("theUser"))   {
+    if (!localStorage.getItem("jwtToken")){
       navigate('/login')
     }
   }, [location.pathname])
@@ -77,7 +77,7 @@ const Admin = (props) => {
           <Route path="/home" element={<Home />} />
           <Route path="/user/account/bind" element={<BindForm handleCheck={props.handleCheck} />} />
           <Route path="/user/add" element={<AddUserForm />} />
-          <Route path="/user/account" element={<UserAccount />} />
+          <Route path="/user/account" element={<UserAccount theUser={props.theUser}/>} />
           <Route path="/programs/upload" element={<Submit handleCheck={props.handleCheck} />} />
           <Route path="/programs/execute" element={<Execute handleCheck={props.handleCheck} />} />
           <Route path="/supported-token-drivers/upload" element={<Upload handleCheck={props.handleCheck} />} />

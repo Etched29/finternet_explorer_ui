@@ -32,7 +32,7 @@ const App = () => {
       // let res=Check();
       // console.log(res.message)
       handleCheck();
-      setIsLoggedIn(true)
+      // setIsLoggedIn(true)
     }
     else {
       setIsLoggedIn(false)
@@ -81,7 +81,7 @@ const App = () => {
               <DropdownToggle tag="div" style={{ display: "none" }} /> {/* Invisible Trigger */}
               <DropdownMenu>
                 <DropdownItem>
-                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{JSON.parse(localStorage.getItem("theUser"))}</div>
+                  <div style={{ marginRight: '5px', fontWeight: '700', }}>{theUser}</div>
                 </DropdownItem>
                 <DropdownItem onClick={logoutHandler}>
                   <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout

@@ -12,7 +12,7 @@ import {
     Collapse,
 } from 'reactstrap';
 
-const UserAccount = () => {
+const UserAccount = ({theUser}) => {
 
     const [userData, setUserData] = useState([])
     const [username, setUsername] = useState('')
@@ -21,7 +21,7 @@ const UserAccount = () => {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        const username = searchParams.get("username")
+        const username = theUser
         setUsername(username)
     }, [searchParams])
     const navigateToBindForm = (username) => {
@@ -42,7 +42,7 @@ const UserAccount = () => {
             const usersList = await getResolverList()
             console.log(usersList)
             const { pathMappingList } = usersList
-            let username = JSON.parse(localStorage.getItem("theUser"));
+            let username = theUser;
             const grouped = { [username]: { username: username, bindings: [], id: username } };
 
             // // First, organize localStorage users
