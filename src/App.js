@@ -47,7 +47,7 @@ const App = () => {
     setDropdownOpen(false)
     localStorage.removeItem("jwtToken")
     localStorage.removeItem("theUser")
-    window.location.href = 'login'
+    window.location.href = window.location.hostname + "/login"
   }
 
   const toggleDropdown = () => {
